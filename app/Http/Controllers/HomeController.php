@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
+use App\ServiceType;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,7 +16,8 @@ class HomeController extends Controller
 
     public function index()
     {
-        return view('home');
+        $types = ServiceType::all();
+        return view('home')->with(compact('types'));
     }
 
     public function requirements()

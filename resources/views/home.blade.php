@@ -17,35 +17,46 @@
                 <div class="panel-heading">Solicita un servicio</div>
 
                 <div class="panel-body">
+                    @if (session('notification'))
+                        <div class="alert alert-info">
+                            <p>{{ session('notification') }}</p>
+                        </div>
+                    @endif
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <p>Por favor revise los siguientes errores:</p>
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <p>Para poder completar tu solicitud deberás completar los siguientes pasos:</p>
-                    <form action="">
+                    <form action="{{ url('/request') }}" method="post">
+                        {{ csrf_field() }}
                         <fieldset>
                             <h3><span class="text-success">1.</span> Selecciona un servicio.</h3>
-                            <label class="radio-inline">
-                                <input type="radio" name="categories[]" id="categoryRadio1" value="option1"> Mozo
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="categories[]" id="categoryRadio2" value="option2"> Gasfitería
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="categories[]" id="categoryRadio3" value="option3"> Reparación de electrodomésticos y equipos
-                            </label>
-                            <label class="radio-inline">
-                                <input type="radio" name="categories[]" id="categoryRadio4" value="option4"> Jardinería
-                            </label>
+                            @foreach ($types as $type)
+                                <label class="radio-inline">
+                                    <input type="radio" name="type" value="{{ $type->id }}"> {{ $type->name }}
+                                </label>
+                            @endforeach
 
                             <h3><span class="text-success">2.</span> Selecciona la fecha.</h3>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <input type="text" id="my_hidden_input" class="form-control" readonly>
+                                    <input type="text" name="request_date" id="request_date" value="{{ date('d/m/Y') }}" class="form-control" readonly>
                                 </div>
                                 <div class="col-md-6">
-                                    <div id="datepicker" data-date="15/10/2016"></div>
+                                    <div id="datepicker" data-date="{{ date('d/m/Y') }}"></div>
                                 </div>
                             </div>
 
                             <h3><span class="text-success">3.</span> Selecciona la hora.</h3>
-                            <input type="time" value="14:30" class="form-control">
+                            <input type="time" name="request_time" value="{{ date('H:i') }}" class="form-control">
                             <p>En formato de 24 horas.</p>
                             <div class="text-center">
                                 <button class="btn btn-success">Enviar solicitud</button>
@@ -64,11 +75,14 @@
     <script src="{{ asset('vendor/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
     <script>
         $(function () {
-            $('#datepicker').datepicker();
+            $('#datepicker').datepicker({
+                format: 'dd/mm/yyyy'
+            });
             $('#datepicker').on('changeDate', function() {
-                $('#my_hidden_input').val(
+                $('#request_date').val(
                     $('#datepicker').datepicker('getFormattedDate')
                 );
+                console.log($('#datepicker').datepicker('getDate'));
             });
         });
     </script>
