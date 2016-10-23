@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use App\ServiceType;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,7 @@ class HomeController extends Controller
 
     public function requirements()
     {
-        return view('dashboard.requirements');
+        $requirements = Auth::user()->requirements;
+        return view('dashboard.requirements')->with(compact('requirements'));
     }
 }

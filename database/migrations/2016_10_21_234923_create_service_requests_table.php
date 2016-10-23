@@ -29,6 +29,9 @@ class CreateServiceRequestsTable extends Migration
             // Hour
             $table->time('request_time');
 
+            // Status
+            $table->enum('status', ['En espera', 'Asignado', 'Confirmado']);
+
             $table->timestamps();
         });
     }

@@ -31,22 +31,22 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @foreach ($requirements as $requirement)
                                 <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>16/10/2016</td>
+                                    <td>
+                                        @if ($requirement->status == 'Asignado')
+                                            <input type="checkbox">
+                                        @else
+                                            <input type="checkbox" disabled>
+                                        @endif
+                                    </td>
+                                    <td>{{ $requirement->date_format }}</td>
                                     <td>Mozo</td>
-                                    <td>14:30</td>
-                                    <td>Por confirmar</td>
-                                    <td><button class="btn btn-default btn-sm">Ver datos</button></td>
+                                    <td>{{ $requirement->time_format }}</td>
+                                    <td>{{ $requirement->status }}</td>
+                                    <td><button type="button" class="btn btn-default btn-sm" data-request="{{ $requirement->id }}">Ver datos</button></td>
                                 </tr>
-                                <tr>
-                                    <td><input type="checkbox"></td>
-                                    <td>22/10/2016</td>
-                                    <td>Reparación de electrodomésticos</td>
-                                    <td>16:00</td>
-                                    <td>Confirmado</td>
-                                    <td><button class="btn btn-default btn-sm">Ver datos</button></td>
-                                </tr>
+                                @endforeach
                                 </tbody>
                             </table>
                             <p class="text-muted">Seleccione los pedidos que desea confirmar.</p>
@@ -61,18 +61,34 @@
 
     </div>
 </div>
+
+    @foreach ($requirements as $requirement)
+    <div class="modal" id="modal-{{ $requirement->id }}">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Datos del proveedor</h4>
+                </div>
+                <div class="modal-body">
+                    @if ($requirement->status == 'En espera')
+                        <p>Aquí usted podrá ver la información del proveedor que haya aplicado a su solicitud de servicio.</p>
+                        <p>Usted será notificado vía e-mail cuando esto suceda.</p>
+                    @elseif ($requirement->status == 'Asignado')
+                        <p>DATOS DEL PROVEEDOR SIN INFO DE CONTACTO</p>
+                    @else
+                        <p>TODOS LOS DATOS DEL PROVEEDOR</p>
+                    @endif
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('vendor/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
-    <script>
-        $(function () {
-            $('#datepicker').datepicker();
-            $('#datepicker').on('changeDate', function() {
-                $('#my_hidden_input').val(
-                    $('#datepicker').datepicker('getFormattedDate')
-                );
-            });
-        });
-    </script>
+    <script src="{{ asset('dist/js/requirements.js') }}"></script>
 @endsection
