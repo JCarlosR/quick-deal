@@ -28,4 +28,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\ServiceRequest');
     }
+
+    public function getIsAdminAttribute()
+    {
+        return $this->id == 1;
+    }
 }
