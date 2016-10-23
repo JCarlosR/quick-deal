@@ -41,7 +41,7 @@
                                         @endif
                                     </td>
                                     <td>{{ $requirement->date_format }}</td>
-                                    <td>Mozo</td>
+                                    <td>{{ $requirement->service_type->name }}</td>
                                     <td>{{ $requirement->time_format }}</td>
                                     <td>{{ $requirement->status }}</td>
                                     <td><button type="button" class="btn btn-default btn-sm" data-request="{{ $requirement->id }}">Ver datos</button></td>

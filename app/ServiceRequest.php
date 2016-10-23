@@ -3,10 +3,24 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Event;
 
 class ServiceRequest extends Model
 {
     protected $dates = ['request_date'];
+
+    public static function boot() {
+        parent::boot();
+
+        static::created(function($service_request) {
+            Event::fire('service_request.created', $service_request);
+        });
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 
     public function getTimeFormatAttribute()
     {
@@ -17,5 +31,10 @@ class ServiceRequest extends Model
     public function getDateFormatAttribute()
     {
         return $this->request_date->format('m/d/Y');
+    }
+
+    public function service_type()
+    {
+        return $this->belongsTo('App\ServiceType');
     }
 }
