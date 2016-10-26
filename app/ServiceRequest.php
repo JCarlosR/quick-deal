@@ -30,7 +30,7 @@ class ServiceRequest extends Model
 
     public function getDateFormatAttribute()
     {
-        return $this->request_date->format('m/d/Y');
+        return $this->request_date->format('d/m/Y');
     }
 
     public function service_type()

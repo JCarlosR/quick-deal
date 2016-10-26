@@ -6,20 +6,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
+
     protected $fillable = [
         'name', 'email', 'password',
     ];
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
     protected $hidden = [
         'password', 'remember_token',
     ];
@@ -32,5 +23,15 @@ class User extends Authenticatable
     public function getIsAdminAttribute()
     {
         return $this->id == 1;
+    }
+
+    public function service_type()
+    {
+        return $this->belongsTo('App\ServiceType');
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->format('d/m/Y');
     }
 }
