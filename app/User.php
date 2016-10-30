@@ -34,4 +34,12 @@ class User extends Authenticatable
     {
         return $this->created_at->format('d/m/Y');
     }
+
+    public function getMainRouteAttribute()
+    {
+        if ($this->provider)
+            return '/apply';
+
+        return '/request'; // user non-provider
+    }
 }

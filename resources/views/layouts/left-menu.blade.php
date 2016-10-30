@@ -4,9 +4,14 @@
 
         <div class="panel-body">
             <ul>
-                <li><a href="{{ url('/home') }}">Solicita un servicio</a></li>
+                @if (auth()->user()->provider)
+                <li><a href="{{ url('/apply') }}">Aplica a un servicio</a></li>
+                <li><a href="{{ url('/applications') }}">Tus aplicaciones</a></li>
+                @else
+                <li><a href="{{ url('/request') }}">Solicita un servicio</a></li>
                 <li><a href="{{ url('/requirements') }}">Tus requerimientos</a></li>
-                @if (Auth::user()->is_admin)
+                @endif
+                @if (auth()->user()->is_admin)
                 <li><a href="{{ url('/providers') }}">Proveedores</a></li>
                 @endif
                 <li><a href="{{ url('/logout') }}">Cerrar sesión</a></li>

@@ -42,7 +42,15 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/home') }}">Inicio</a></li>
+                    <li>
+                        @if (! auth()->check())
+                            <a href="{{ url('/') }}">Inicio</a>
+                        @elseif (auth()->user()->provider)
+                            <a href="{{ url('/apply') }}">Inicio</a>
+                        @else
+                            <a href="{{ url('/request') }}">Inicio</a>
+                        @endif
+                    </li>
                     <li><a href="#">¿Quiénes somos?</a></li>
                     <li><a href="#">¿Cómo funciona?</a></li>
                     <li><a href="#">Nuestros servicios</a></li>
