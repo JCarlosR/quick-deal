@@ -75,7 +75,7 @@
                         <p>Aquí usted podrá ver la información del proveedor que haya aplicado a su solicitud de servicio.</p>
                         <p>Usted será notificado vía e-mail cuando esto suceda.</p>
                     @elseif ($requirement->status == 'Asignado')
-                        <p>DATOS DEL PROVEEDOR SIN INFO DE CONTACTO</p>
+                        <p>{{ $requirement->application->provider }}</p>
                     @else
                         <p>TODOS LOS DATOS DEL PROVEEDOR</p>
                     @endif

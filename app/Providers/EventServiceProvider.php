@@ -16,6 +16,9 @@ class EventServiceProvider extends ServiceProvider
         'service_request.created' => [
             'App\Listeners\ServiceRequestListener@created',
         ],
+        'application.created' => [
+            'App\Listeners\ApplicationListener@created',
+        ],
     ];
 
     /**

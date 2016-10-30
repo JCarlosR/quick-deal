@@ -37,10 +37,10 @@
                                 <thead>
                                 <tr class="success">
                                     <th></th>
-                                    <th>Fecha</th>
+                                    <th>Fecha servicio</th>
+                                    <th>Fecha publicación</th>
                                     <th>Hora</th>
                                     <th>Cliente</th>
-                                    <th>Opciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -50,9 +50,9 @@
                                         <input type="radio" name="service_request_id" value="{{ $requirement->id }}" />
                                     </td>
                                     <td>{{ $requirement->date_format }}</td>
+                                    <td>{{ $requirement->created_date }}</td>
                                     <td>{{ $requirement->time_format }}</td>
                                     <td>{{ $requirement->user->name }}</td>
-                                    <td><button type="button" class="btn btn-default btn-sm" data-request="{{ $requirement->id }}">Ver datos</button></td>
                                 </tr>
                                 @endforeach
                                 </tbody>
@@ -69,25 +69,6 @@
 
     </div>
 </div>
-
-    @foreach ($requirements as $requirement)
-    <div class="modal" id="modal-{{ $requirement->id }}">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Datos del requerimiento</h4>
-                </div>
-                <div class="modal-body">
-                    <p>Aquí se mostrará con mayor detalle lo solicitado en el requerimiento.</p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endforeach
 @endsection
 
 @section('scripts')

@@ -15,6 +15,12 @@
                 </div>
 
                 <div class="panel-body">
+                    @if (session('notification'))
+                        <div class="alert alert-success">
+                            <p>{{ session('notification') }}</p>
+                        </div>
+                    @endif
+
                     @if (count($errors) > 0)
                         <div class="alert alert-danger">
                             <ul>
@@ -74,10 +80,10 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">Datos del requerimiento</h4>
+                    <h4 class="modal-title">Datos del cliente</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Aquí se mostrará con mayor detalle lo solicitado en el requerimiento.</p>
+                    <p>Aquí se mostrará la información principal del cliente, luego que haya confirmado que está interesado en tu servicio.</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
