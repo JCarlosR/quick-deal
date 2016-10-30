@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Event;
 
 class ServiceRequestController extends Controller
 {
@@ -39,5 +40,45 @@ class ServiceRequestController extends Controller
         $service->save();
 
         return back()->with('notification', 'Su solicitud se ha registrado correctamente !');
+    }
+
+    public function confirm(Request $request)
+    {
+        $rules = [
+            'requirement_id' => 'required|exists:service_requests,id'
+        ];
+        $messages = [
+            'requirement_id.required' => 'Debe seleccionar la solicitud que desea confirmar.',
+            'requirement_id.exists' => 'La solicitud indicada no está disponible.'
+        ];
+        $validator = validator()->make($request->all(), $rules, $messages);
+
+        $requirement_id = $request->get('requirement_id');
+        if ($requirement_id) {
+            $service_request = ServiceRequest::find($requirement_id);
+        } else $service_request = null;
+
+        $validator->after(function($validator) use($service_request) {
+            if ($service_request && $service_request->user->id != auth()->user()->id) { // trying to hack changing the service request id?
+                $validator->errors()->add('requirement_id', 'No puedes confirmar una solicitud que no te corresponde.');
+            }
+        });
+
+        if ($validator->fails()) {
+            return back()
+                ->withErrors($validator)
+                ->withInput();
+        }
+
+        // Validation successful
+        $service_request->status = 'Confirmado';
+        $service_request->save();
+        $application = $service_request->application;
+        $application->status = 'Confirmado';
+        $application->save();
+
+        Event::fire('application.confirmed', $application);
+
+        return back()->with('notification', 'Has confirmado correctamente el servicio. Puedes ver ahora los datos de contacto.');
     }
 }

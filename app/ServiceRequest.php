@@ -35,7 +35,8 @@ class ServiceRequest extends Model
 
     public function getCreatedDateAttribute()
     {
-        return $this->created_at->format('d/m/Y');
+        return $this->created_at
+            ->format('d/m/Y');
     }
 
     public function service_type()

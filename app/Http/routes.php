@@ -10,6 +10,7 @@ Route::auth();
 Route::get('/request', 'HomeController@index');
 Route::post('/request', 'ServiceRequestController@store');
 Route::get('/requirements', 'HomeController@requirements');
+Route::post('/confirm', 'ServiceRequestController@confirm');
 
 // Provider
 Route::get('/apply', 'ProviderController@getApply');

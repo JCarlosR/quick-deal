@@ -19,6 +19,9 @@ class EventServiceProvider extends ServiceProvider
         'application.created' => [
             'App\Listeners\ApplicationListener@created',
         ],
+        'application.confirmed' => [
+            'App\Listeners\ApplicationListener@confirmed',
+        ],
     ];
 
     /**

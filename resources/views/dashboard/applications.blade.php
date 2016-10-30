@@ -16,7 +16,7 @@
 
                 <div class="panel-body">
                     @if (session('notification'))
-                        <div class="alert alert-success">
+                        <div class="alert alert-info">
                             <p>{{ session('notification') }}</p>
                         </div>
                     @endif
@@ -83,7 +83,20 @@
                     <h4 class="modal-title">Datos del cliente</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Aquí se mostrará la información principal del cliente, luego que haya confirmado que está interesado en tu servicio.</p>
+                    @if ($application->status == 'Por confirmar')
+                        <p>Aquí se mostrará la información principal del cliente, luego que haya confirmado que está interesado en tu servicio.</p>
+                    @elseif ($application->status == 'Confirmado')
+                        <legend>Datos principales</legend>
+                        <p>
+                            <strong>Nombre completo:</strong> {{ $application->service_request->user->name }}
+                        </p>
+                        <p>
+                            <strong>E-mail:</strong> {{ $application->service_request->user->email }}
+                        </p>
+                    @else
+                        <p>Lamentablemente el cliente ha rechazado tu servicio.</p>
+                        <p>Pero no te desanimes, accede al apartado de <strong>Aplica a un servicio</strong> y aplica a otros requerimientos.</p>
+                    @endif
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>

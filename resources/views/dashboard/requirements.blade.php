@@ -17,7 +17,24 @@
                 <div class="panel-heading">Tus requerimientos</div>
 
                 <div class="panel-body">
-                    <form action="">
+                    @if (session('notification'))
+                        <div class="alert alert-info">
+                            <p>{{ session('notification') }}</p>
+                        </div>
+                    @endif
+
+                    @if (count($errors) > 0)
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
+                    <form action="{{ url('/confirm') }}" method="POST">
+                        {{ csrf_field() }}
                         <fieldset>
                             <table class="table table-bordered table-hover">
                                 <thead>
@@ -35,9 +52,9 @@
                                 <tr>
                                     <td>
                                         @if ($requirement->status == 'Asignado')
-                                            <input type="checkbox">
+                                            <input type="radio" name="requirement_id" value="{{ $requirement->id }}" />
                                         @else
-                                            <input type="checkbox" disabled>
+                                            <input type="radio" disabled />
                                         @endif
                                     </td>
                                     <td>{{ $requirement->date_format }}</td>
@@ -74,10 +91,80 @@
                     @if ($requirement->status == 'En espera')
                         <p>Aquí usted podrá ver la información del proveedor que haya aplicado a su solicitud de servicio.</p>
                         <p>Usted será notificado vía e-mail cuando esto suceda.</p>
-                    @elseif ($requirement->status == 'Asignado')
-                        <p>{{ $requirement->application->provider }}</p>
-                    @else
-                        <p>TODOS LOS DATOS DEL PROVEEDOR</p>
+                    @else {{-- if ($requirement->status == 'Asignado') --}}
+                        <legend>Datos del proveedor</legend>
+                        <p>
+                            <strong>Nombre del proveedor: </strong>{{ $requirement->application->provider->name }}
+                        </p>
+                        <p>
+                            <strong>E-mail: </strong>{{ $requirement->application->provider->email }}
+                        </p>
+                        <p>
+                            <strong>Dirección: </strong>{{ $requirement->application->provider->address }}
+                        </p>
+                        <p>
+                            <strong>Dpto/Región: </strong>{{ $requirement->application->provider->region }}
+                        </p>
+                        <p>
+                            <strong>Distrito: </strong>{{ $requirement->application->provider->district }}
+                        </p>
+
+                        <legend>Experiencia profesional</legend>
+                        <p>
+                            <strong>Perfil profesional: </strong>{{ $requirement->application->provider->professional_profile }}
+                        </p>
+                        <p>
+                            <strong>Experiencia: </strong>{{ $requirement->application->provider->professional_experience }}
+                        </p>
+                        <p>
+                            <strong>Educación: </strong>{{ $requirement->application->provider->professional_education }}
+                        </p>
+                        <p>
+                            <strong>Especialidad: </strong>{{ $requirement->application->provider->professional_specialty }}
+                        </p>
+                        @if ($requirement->status == 'Confirmado')
+                        <legend>Datos de contacto</legend>
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th>Contacto para contratos</th>
+                                <th>Contacto para pagos</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>
+                                    <p>
+                                        <strong>Nombre: </strong>{{ $requirement->application->provider->contract_name }}
+                                    </p>
+                                    <p>
+                                        <strong>E-mail: </strong>{{ $requirement->application->provider->contract_email }}
+                                    </p>
+                                    <p>
+                                        <strong>Celular: </strong>{{ $requirement->application->provider->contract_cellphone }}
+                                    </p>
+                                    <p>
+                                        <strong>Teléfono: </strong>{{ $requirement->application->provider->contract_phone }}
+                                    </p>
+                                </td>
+                                <td>
+                                    <p>
+                                        <strong>Nombre: </strong>{{ $requirement->application->provider->payment_name }}
+                                    </p>
+                                    <p>
+                                        <strong>E-mail: </strong>{{ $requirement->application->provider->payment_email }}
+                                    </p>
+                                    <p>
+                                        <strong>Celular: </strong>{{ $requirement->application->provider->payment_cellphone }}
+                                    </p>
+                                    <p>
+                                        <strong>Teléfono: </strong>{{ $requirement->application->provider->payment_phone }}
+                                    </p>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        @endif
                     @endif
                 </div>
                 <div class="modal-footer">
