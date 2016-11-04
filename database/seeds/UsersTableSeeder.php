@@ -13,7 +13,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         User::create([
-            'name' => 'Manuel Tejero',
+            'name' => 'Administrador',
             'email' => 'juancagb.17@gmail.com',
             'password' => bcrypt('123123')
         ]);
@@ -42,6 +42,32 @@ class UsersTableSeeder extends Seeder
             'professional_experience' => 'He participado en proyectos de desarrollo web y móvil.',
             'professional_education' => 'Ingeniero de sistemas egresado de la Universidad Nacional de Trujillo.',
             'professional_specialty' => 'He usado variados lenguajes de programación, siendo los principales PHP para el desarrollo backend, y Android para el desarrollo móvil.'
+        ]);
+
+        User::create([
+            'name' => 'Tejero Alcalde Manuel Alejandro',
+            'email' => 'tejerom@hotmail.com',
+            'password' => bcrypt('123123'),
+            'provider' => true,
+            'service_type_id' => 1,
+            'address' => 'Calle Roma 335',
+            'region' => 'Lima',
+            'district' => 'San Isidro',
+
+            'contract_name' => 'Manuel Tejero',
+            'contract_email' => 'juan@gmail.com',
+            'contract_cellphone' => '942761597',
+            'contract_phone' => '4221833',
+
+            'payment_name' => 'Manuel Tejero',
+            'payment_email' => 'carlos@gmail.com',
+            'payment_cellphone' => '942761597',
+            'payment_phone' => '4221833',
+
+            'professional_profile' => 'Es un muchacho emprendedor, entusiasta en el desempeño de sus labores, pro-activo, adaptable a los cambios, gran sentido analítico, objetivo, manejo de situaciones difíciles y que demandan creatividad en buscar soluciones, sociable y comunicativo.',
+            'professional_experience' => 'Duración: 01/01/2016 al 31/10/2016; Insititución: Independiente; Profesión: Mozo                   Principales funciones: Cumplir con el requerimiento del cliente, servir bebidas alcohólicas y no alcohólicas. Preparar bebidas como Cuba Libre, Whisky, chilcanos, etc.',
+            'professional_education' => 'Primaria y secundaria en el colegio de la inmaculada. Desde el año 1996 al 2006.',
+            'professional_specialty' => 'Conocimiento en preparación de bebidas alcohólicas con diseño y arte.'
         ]);
     }
 }

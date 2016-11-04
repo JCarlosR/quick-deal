@@ -142,6 +142,15 @@
                             </div>
                         </fieldset>
                         <fieldset>
+                            <legend>Evaluación psicológica</legend>
+                            <div class="form-group">
+                                <label for="psychologist_comments" class="col-sm-3 control-label">Comentarios del psicólogo</label>
+                                <div class="col-sm-9">
+                                    <textarea name="psychologist_comments" class="form-control" placeholder="Comentarios realizados por el psicólogo.">{{ old('psychologist_comments') }}</textarea>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset>
                             <legend>Cuenta de usuario</legend>
                             <div class="form-group">
                                 <label for="email" class="col-sm-3 control-label">E-mail</label>

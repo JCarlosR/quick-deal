@@ -47,6 +47,9 @@ class CreateUsersTable extends Migration
             $table->text('professional_education');
             $table->text('professional_specialty');
 
+            // Psychological evaluation
+            $table->text('psychologist_comments');
+
             $table->rememberToken();
             $table->timestamps();
         });

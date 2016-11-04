@@ -98,6 +98,8 @@ class AdminController extends Controller
         $user->professional_education = $request->get('professional_education');
         $user->professional_specialty = $request->get('professional_specialty');
 
+        $user->psychologist_comments = $request->get('psychologist_comments');
+
         $user->email = $request->get('email');
         $user->password = bcrypt( $request->get('password') );
         $user->provider = true;
