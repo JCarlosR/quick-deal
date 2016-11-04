@@ -68,7 +68,8 @@
                             </table>
                             <p class="text-muted">Seleccione los pedidos que desea confirmar.</p>
                             <div class="text-center">
-                                <button class="btn btn-success">Confirmar pedido</button>
+                                <button class="btn btn-success" name="confirmation" value="1">Confirmar pedido</button>
+                                <button class="btn btn-danger" name="confirmation" value="0">Cancelar pedido</button>
                             </div>
                         </fieldset>
                     </form>
@@ -81,7 +82,7 @@
 
     @foreach ($requirements as $requirement)
     <div class="modal" id="modal-{{ $requirement->id }}">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -121,6 +122,11 @@
                         </p>
                         <p>
                             <strong>Especialidad: </strong>{{ $requirement->application->provider->professional_specialty }}
+                        </p>
+
+                        <legend>Evalucación psicológica</legend>
+                        <p>
+                            <strong>Comentarios del psicólogo: </strong>{{ $requirement->application->provider->psychologist_comments }}
                         </p>
                         @if ($requirement->status == 'Confirmado')
                         <legend>Datos de contacto</legend>

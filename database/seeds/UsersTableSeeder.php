@@ -23,7 +23,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'juancagb.17@hotmail.com',
             'password' => bcrypt('123123'),
             'provider' => true,
-            'service_type_id' => 3,
+            'service_type_id' => 1,
             'address' => 'Cerca al colegio Antenor Orrego',
             'region' => 'La Libertad / Trujillo',
             'district' => 'Laredo',
@@ -67,7 +67,9 @@ class UsersTableSeeder extends Seeder
             'professional_profile' => 'Es un muchacho emprendedor, entusiasta en el desempeño de sus labores, pro-activo, adaptable a los cambios, gran sentido analítico, objetivo, manejo de situaciones difíciles y que demandan creatividad en buscar soluciones, sociable y comunicativo.',
             'professional_experience' => 'Duración: 01/01/2016 al 31/10/2016; Insititución: Independiente; Profesión: Mozo                   Principales funciones: Cumplir con el requerimiento del cliente, servir bebidas alcohólicas y no alcohólicas. Preparar bebidas como Cuba Libre, Whisky, chilcanos, etc.',
             'professional_education' => 'Primaria y secundaria en el colegio de la inmaculada. Desde el año 1996 al 2006.',
-            'professional_specialty' => 'Conocimiento en preparación de bebidas alcohólicas con diseño y arte.'
+            'professional_specialty' => 'Conocimiento en preparación de bebidas alcohólicas con diseño y arte.',
+
+            'psychologist_comments' => 'Es una persona responsable, proactiva y puntual. Es apto para el puesto de mozo.'
         ]);
     }
 }

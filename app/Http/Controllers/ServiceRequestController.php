@@ -45,7 +45,8 @@ class ServiceRequestController extends Controller
     public function confirm(Request $request)
     {
         $rules = [
-            'requirement_id' => 'required|exists:service_requests,id'
+            'requirement_id' => 'required|exists:service_requests,id',
+            'confirmation' => 'required|boolean'
         ];
         $messages = [
             'requirement_id.required' => 'Debe seleccionar la solicitud que desea confirmar.',
@@ -71,14 +72,30 @@ class ServiceRequestController extends Controller
         }
 
         // Validation successful
-        $service_request->status = 'Confirmado';
-        $service_request->save();
-        $application = $service_request->application;
-        $application->status = 'Confirmado';
-        $application->save();
+        $confirmation = $request->get('confirmation');
+        if ($confirmation) {
+            $service_request->status = 'Confirmado';
+            $service_request->save();
+
+            $application = $service_request->application;
+            $application->status = 'Confirmado';
+            $application->save();
+        } else {
+            $service_request->status = 'En espera';
+            $service_request->save();
+
+            $application = $service_request->application;
+            $application->status = 'Rechazado';
+            $application->save();
+        }
 
         Event::fire('application.confirmed', $application);
 
-        return back()->with('notification', 'Has confirmado correctamente el servicio. Puedes ver ahora los datos de contacto.');
+        if ($confirmation)
+            $notification = 'Has confirmado correctamente el servicio. Puedes ver ahora los datos de contacto.';
+        else
+            $notification = 'Has rechazado el servicio. Serás notificado cuando otro proveedor aplique a tu requerimiento.';
+
+        return back()->with('notification', $notification);
     }
 }

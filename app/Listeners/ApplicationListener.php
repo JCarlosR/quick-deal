@@ -39,6 +39,10 @@ class ApplicationListener
 
     public function confirmed(Application $application)
     {
+        // If the application was rejected, don't fire the mails
+        if ($application->status == 'Rechazado')
+            return;
+
         // Notify confirmation to the client
         $client = $application->service_request->user;
         // Data
