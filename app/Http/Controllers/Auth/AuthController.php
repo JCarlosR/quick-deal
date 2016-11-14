@@ -14,18 +14,8 @@ class AuthController extends Controller
 
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
-    /**
-     * Where to redirect users after login / registration.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/dashboard'; // it is ignored (see redirectPath method)
 
-    /**
-     * Create a new authentication controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
@@ -63,7 +53,12 @@ class AuthController extends Controller
 
     public function redirectPath()
     {
-        if (auth()->user()->provider) {
+        $user = auth()->user(); // authenticated user
+
+        if ($user->provider) {
+            if ($user->default_password)
+                return '/change-password';
+
             return '/apply';
         }
 

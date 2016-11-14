@@ -26,6 +26,12 @@
                         </div>
                     @endif
 
+                        @if (session('notification'))
+                            <div class="alert alert-info">
+                                {{ session('notification') }}
+                            </div>
+                        @endif
+
                     <p>Las solicitudes mostradas a continuación están en estado de espera.</p>
                     <p>Si un proveedor aplica a una solicitud, ésta desaparece de la lista.</p>
                     <p>El cliente tiene la posibilidad de confirmar o rechazar al proveedor.</p>

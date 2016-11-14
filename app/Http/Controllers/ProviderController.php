@@ -15,6 +15,30 @@ class ProviderController extends Controller
         $this->middleware('auth');
     }
 
+    public function getChangePassword()
+    {
+        return view('dashboard.change_password');
+    }
+
+    public function postChangePassword(Request $request)
+    {
+        $rules = [
+            'password' => 'required|min:6|confirmed'
+        ];
+        $messages = [
+            'password.required' => '¿Ha olvidado ingresar su nueva contraseña?',
+            'password.min' => 'La contraseña debe tener al menos 6 caracteres.',
+            'password.confirmed' => 'Las contraseñas ingresadas no coinciden.'
+        ];
+        $this->validate($request, $rules, $messages);
+
+        $user = auth()->user();
+        $user->password = bcrypt($request->get('password'));
+        $user->save();
+
+        return redirect('/apply')->with('notification', 'Su contraseña se ha actualizado con éxito !');
+    }
+
     public function getApply()
     {
         $requirements = ServiceRequest::where('service_type_id', auth()->user()->service_type_id)

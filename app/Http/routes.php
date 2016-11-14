@@ -13,6 +13,8 @@ Route::get('/requirements', 'HomeController@requirements');
 Route::post('/confirm', 'ServiceRequestController@confirm');
 
 // Provider
+Route::get('/change-password', 'ProviderController@getChangePassword');
+Route::post('/change-password', 'ProviderController@postChangePassword');
 Route::get('/apply', 'ProviderController@getApply');
 Route::post('/apply', 'ProviderController@postApply');
 Route::get('/applications', 'ProviderController@applications');
