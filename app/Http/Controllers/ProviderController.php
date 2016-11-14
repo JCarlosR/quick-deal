@@ -34,7 +34,8 @@ class ProviderController extends Controller
 
         $user = auth()->user();
         $user->password = bcrypt($request->get('password'));
-        $user->save();
+        $user->default_password = false;
+            $user->save();
 
         return redirect('/apply')->with('notification', 'Su contraseña se ha actualizado con éxito !');
     }
