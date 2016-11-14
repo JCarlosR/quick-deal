@@ -7,6 +7,7 @@ use App\User;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
@@ -104,6 +105,15 @@ class AdminController extends Controller
         $user->password = bcrypt( $request->get('password') );
         $user->provider = true;
         $user->save();
+
+        // Send email with default password
+        $target_email = $request->get('email');
+        $data['name'] = $request->get('name');
+        $data['default_password'] = $request->get('password');
+        Mail::send('emails.welcome_provider', $data, function ($message) use ($target_email) {
+            $message->from('admin@quickdeal.pe', 'Quick Deal');
+            $message->to($target_email)->subject('Bienvenido a QuickDeal!');
+        });
 
         return redirect('providers')->with('notification', 'Proveedor registrado con éxito !');
     }

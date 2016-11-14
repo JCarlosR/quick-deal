@@ -21,6 +21,9 @@ class CreateUsersTable extends Migration
 
             $table->boolean('provider')->default(false);
 
+            // When a provider is created, a default password is associated
+            $table->boolean('default_password')->default(true);
+
             // Provider data
             $table->string('address');
             $table->string('region');
