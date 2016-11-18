@@ -3,8 +3,11 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h1 class="text-center">INGRESA AQUÍ<br>PARA SOLICITAR TU SERVICIO</h1>
+        <div class="col-md-5">
+            <h1 class="text-center font-quick">
+                <b>INGRESA AQUÍ</b><br>
+                PARA SOLICITAR TU SERVICIO
+            </h1>
             <div class="panel panel-success">
                 <div class="panel-heading">Iniciar sesión</div>
                 <div class="panel-body">

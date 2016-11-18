@@ -13,6 +13,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ asset('dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('dist/css/custom.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/quick.css') }}">
     <style>
         .fa-btn {
             margin-right: 6px;
@@ -35,7 +36,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    Quick Deal
+                    <img src="{{ asset('dist/theme/images/logo-home.png') }}" alt="Logo">
                 </a>
             </div>
 
@@ -51,10 +52,10 @@
                             <a href="{{ url('/request') }}">Inicio</a>
                         @endif
                     </li>
-                    <li><a href="#">¿Quiénes somos?</a></li>
-                    <li><a href="#">¿Cómo funciona?</a></li>
-                    <li><a href="#">Nuestros servicios</a></li>
-                    <li><a href="#">Socios estratégicos</a></li>
+                    <li><a href="#quienes-somos">¿Quiénes<br>somos?</a></li>
+                    <li><a href="#">¿Cómo<br>funciona?</a></li>
+                    <li><a href="#nuestros-servicios">Nuestros<br>servicios</a></li>
+                    <li><a href="#">Socios<br>estratégicos</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -62,7 +63,6 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Ingresar</a></li>
-                        <li><a href="{{ url('/register') }}">Registro</a></li>
                     @else
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
