@@ -124,7 +124,7 @@
     <div class="row" id="article-footer">
         <div class="col-md-3">
             <h3 class="font-quick-white">Links de interés</h3>
-            <ul class="font-quick-white">
+            <ul class="list-quick-white font-quick-white">
                 <li>¿Cómo usar la página?</li>
                 <li>¿Quieres ser parte del equipo Quick Deal?</li>
                 <li>Tipos de servicio</li>
