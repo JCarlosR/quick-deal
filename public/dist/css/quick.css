@@ -9,6 +9,15 @@
     font-family: "Agency FB", "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: white;
 }
+.panel .panel-heading .font-quick-white {
+    font-size: 1.8em;
+    margin: 0;
+    text-align: center;
+}
+.no-spaces {
+    margin: 0;
+    padding: 0;
+}
 
 
 #app-layout .navbar-inverse {
@@ -74,6 +83,15 @@ button.btn-quick {
     color: rgb(0, 169, 157);
     font-size: 1.6em;
     padding: 0.4em;
+}
+button.btn-quick-small {
+    border: 1px solid rgb(0, 169, 157);
+    background-color: transparent;
+    font-family: "Agency FB", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: rgb(0, 169, 157);
+    font-size: 1.4em;
+    padding: 0.2em 0.8em;
+    font-weight: bold;
 }
 
 .row-quick {
@@ -204,4 +222,19 @@ article .font-quick-black {
 }
 #article-footer p, #article-footer ul {
     font-size: 1.2em;
+}
+
+#login-container .panel {
+    border-radius: 42px;
+}
+#login-container .panel .panel-heading {
+    border-top-right-radius: 38px;
+    border-top-left-radius: 38px;
+}
+/*#login-container .panel-body {
+    background-color: rgb(242, 242, 242);
+}*/
+.form-control {
+    font-family: "Agency FB", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.4em;
 }

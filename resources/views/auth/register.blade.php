@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+        <div class="col-md-6">
             <h1 class="text-center">¿TODAVÍA NO TIENES UN USUARIO?<br>REGÍSTRATE GRATIS</h1>
             <div class="panel panel-success">
                 <div class="panel-heading">Regístrate por primera vez</div>
