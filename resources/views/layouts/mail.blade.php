@@ -28,7 +28,8 @@
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td align="center" class="font-quick">
-                <h2 class="color-quick">Quick Deal</h2>
+                {{--<h2 class="color-quick">Quick Deal</h2>--}}
+                <img src="{{ asset('dist/mail/logo.png') }}" alt="Logo Quick Deal" class="img-center">
 
                 <div class="color-quick">
                     @yield('content')
