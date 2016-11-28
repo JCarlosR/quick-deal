@@ -26,18 +26,19 @@
         <tr>
             <td align="center">
                 <h2>Quick Deal</h2>
-                {{--<img src="{{ asset('dist/theme/images/logo-home.png') }}" alt="Logo Quick Deal" class="img-center" height="100">--}}
+                @yield('content')
+
+                <div class="divider-quick"></div>
+
+                <p class="text-center">
+                    atentamente el equipo de Quick Deal <br>
+                    wwww.quickdeal.pe
+                </p>
+                <img src="{{ asset('dist/mail/services.png') }}" alt="Services Quick Deal" class="img-center">
+                <img src="{{ asset('dist/mail/footer.png') }}" alt="Footer Quick Deal" class="img-center">
             </td>
         </tr>
     </table>
-    @yield('content')
-
-    <div class="divider-quick"></div>
-
-    <p class="text-center">
-        atentamente el equipo de Quick Deal <br>
-        wwww.quickdeal.com
-    </p>
 
     <!-- JavaScripts -->
     @yield('scripts')
