@@ -1,7 +1,7 @@
 @extends('layouts.mail')
 
 @section('content')
-<h1>Hola, {{ $name }}</h1>
+<h3 class="text-left">Hola, {{ $name }}</h3>
 <p>Te damos la bienvenida a nuestra plataforma <b>Quickdeal</b>. En esta podrás verificar y confirmar los servicios que deseas en la hora y fecha que requiere el cliente.</p>
 
 <p>Esta es tu contraseña generada por defecto:</p>
