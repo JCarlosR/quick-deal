@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use Illuminate\Support\Facades\Mail;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -44,11 +45,28 @@ class AuthController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+
+        $this->sendWelcomeToClient($user);
+
+        return $user;
+    }
+
+    private function sendWelComeToClient(User $user) {
+        // Destination
+        $target_email = $user->email;
+        // Data
+        $data['name'] = $user->name;
+        // Send mail
+        Mail::send('emails.welcome_client', $data, function ($message) use ($target_email) {
+            $message->from('admin@quickdeal.pe', 'Quick Deal');
+
+            $message->to($target_email)->subject('Bienvenido a Quick Deal!');
+        });
     }
 
     public function redirectPath()
