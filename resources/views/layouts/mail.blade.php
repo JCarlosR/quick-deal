@@ -19,14 +19,20 @@
             background: rgb(0, 169, 157);
             height: 4px;
         }
+        .color-quick {
+            color: rgb(0, 169, 157);
+        }
     </style>
 </head>
-<body class="font-quick">
+<body>
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td align="center">
-                <h2>Quick Deal</h2>
-                @yield('content')
+            <td align="center" class="font-quick">
+                <h2 class="color-quick">Quick Deal</h2>
+
+                <div class="color-quick">
+                    @yield('content')
+                </div>
 
                 <div class="divider-quick"></div>
 
