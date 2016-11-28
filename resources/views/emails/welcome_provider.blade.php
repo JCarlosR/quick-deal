@@ -10,6 +10,7 @@
 
 <p>Nos contactaremos contigo para brindarte toda la asesoría e información que necesitas para emprender tu negocio.</p>
 <p>Muchos éxitos !</p>
-<hr>
+
+<br>
 <p>Si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
 @endsection

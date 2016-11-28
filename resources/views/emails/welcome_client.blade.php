@@ -24,6 +24,7 @@
 
 <p>Recuerda que en cada etapa recibirás un email de notificación.</p>
 Reiteramos nuestro compromiso de dar un servicio de calidad y amigable. Estamos agradecidos de darnos tu confianza para buscar al mejor proveedor para realizar tu requerimiento.
-<hr>
+
+<br>
 <p>Si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
 @endsection

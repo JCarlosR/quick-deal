@@ -15,6 +15,9 @@
         .text-center {
             text-align: center;
         }
+        .text-left {
+            text-align: left;
+        }
         .divider-quick {
             background: rgb(0, 169, 157);
             height: 4px;
