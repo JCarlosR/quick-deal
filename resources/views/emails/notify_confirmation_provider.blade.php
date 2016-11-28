@@ -1,3 +1,6 @@
+@extends('layouts.mail')
+
+@section('content')
 <h1>Hola, {{ $name }}</h1>
 <p>Te escribimos de <strong>QuickDeal</strong> para informarte que el cliente {{ $client }} ha aprobado tu servicio.</p>
 <p><a href="{{ url('/applications') }}">Ingresa a la plataforma</a> para que puedas ver tus aplicaciones y el estado de cada una de ellas.</p>
@@ -14,3 +17,4 @@
 <hr>
 
 <p>Si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
+@endsection
