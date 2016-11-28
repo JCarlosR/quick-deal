@@ -1,4 +1,7 @@
-<h1>Hola, {{ $serviceRequest->user->name }}</h1>
+@extends('layouts.mail')
+
+@section('content')
+<h3>Hola, {{ $serviceRequest->user->name }}</h3>
 <p>Te escribimos de <strong>QuickDeal</strong> para informarte que tu solicitud de servicio se ha publicado correctamente.</p>
 <p>Tu solicitud ha sido enviada a los proveedores destacados en el servicio que escogiste: <strong>{{ $serviceRequest->service_type->name }}</strong>.</p>
 <ul>
@@ -8,5 +11,6 @@
 </ul>
 
 <p>Para más información, ingresa a la plataforma.</p>
-<hr>
-<p>Y recuerda, si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
+<br>
+<p>Recuerda: si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
+@endsection
