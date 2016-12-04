@@ -11,6 +11,5 @@
 </ul>
 
 <p>Para más información, ingresa a la plataforma.</p>
-<br>
-<p>Recuerda: si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
+<p>Recuerda que si tienes alguna duda puedes escribirnos a admin@quickdeal.pe</p>
 @endsection

@@ -78,7 +78,7 @@ class AdminController extends Controller
         $this->validate($request, $rules, $messages);
 
         $user = new User();
-        $user->name = $request->get('name');
+        $user->name = $request->get('name'); // $_GET['name'] isset
         $user->address = $request->get('address');
         $user->region = $request->get('region');
         $user->district = $request->get('district');
