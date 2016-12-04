@@ -34,7 +34,7 @@
                 {{--<h2 class="color-quick">Quick Deal</h2>--}}
                 <img src="{{ asset('dist/mail/logo.png') }}" alt="Logo Quick Deal" class="img-center">
 
-                <div class="color-quick">
+                <div>
                     @yield('content')
                 </div>
 
